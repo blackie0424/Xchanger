@@ -13,9 +13,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<h1><%= city %></h1>
+		<h1><%= city %> 共有<%= hostels.length %>間民宿</h1>
 		<% _.each(hostels, function (hostel) { %>
-    		<a href="/hostel/<%= hostel.id %>"><%= hostel.name %></a>
+    		<p><a href="/hostel/<%= hostel.id %>"><%= hostel.name %></a></p>
     	<% }) %>
+    	<a href="/city">回上頁</a>
 	</body>
 </html>

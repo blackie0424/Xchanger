@@ -11,7 +11,7 @@ module.exports = {
   },
   show: function(req, res){
   		var city = req.param('city');
-	  	Hostel.find({city:city}).exec(function(err,hostels){
+	  	Hostel.find({city:city,type:"好客民宿"}).exec(function(err,hostels){
 			return res.view("city/hostels",{hostels:hostels,city:city});
 		});
   }
