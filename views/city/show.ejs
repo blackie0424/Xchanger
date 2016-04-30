@@ -14,13 +14,23 @@
 	</head>
 	<body>
 		<h1><%= city %> 共有<%= hostels.length %>間民宿</h1>
-		<% _.each(hostels, function (hostel) { %>
-			<% if(hostel.licence){%>
-    		<p><a href="/hostel/<%= hostel.id %>"><%= hostel.name %></a></p>
-    		<% }else{ %>
-			<p><a style="color:red;" href="/hostel/<%= hostel.id %>"><%= hostel.name %></a></p>
-    		<% }%>
-    	<% }) %>
-    	<a href="/city">回上頁</a>
+		<div class="container">
+			<div class="row">
+				<% _.each(hostels, function (hostel) { %>
+					<div class="col-md-4">
+						<div class="panel panel-default">
+  						<div class="panel-heading"><%= hostel.name %></div>
+  							<div class="panel-body">
+    							<% if(hostel.licence){%>
+									<img src="/images/Img_307.gif" width="60%" />
+    							<% }%>
+    							<a href="/hostel/<%= hostel.id %>" class="btn btn-primary">詳細資料</a>
+  							</div>
+						</div>
+					</div>
+				<% }) %>
+			</div>
+		</div>
+    	
 	</body>
 </html>

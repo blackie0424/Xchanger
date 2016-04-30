@@ -8,36 +8,75 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
 	</head>
 	<body>
-		<h1><%= hostel.name %></h1>
-		<table class="table">
-			<tr>
-				<td>縣市旅宿登記證號</td>
-				<td><%= hostel.licence %></td>
-			</tr>
-			<tr>
-				<td>房間數量</td>
-				<td><%= hostel.rooms %></td>
-			</tr>
-			<tr>
-				<td>地址</td>
-				<td><%= hostel.address %></td>
-			</tr>
-			<tr>
-				<td>網址</td>
-				<td><a href="<%= hostel.address %>">官網</a></td>
-			</tr>
-			<% if(hostel.polis){ %>
-			<tr>
-				<td>小幫手紀錄</td>
-				<td><a href="/hostel/<%= hostel.id %>/polis" target="_blank">歷屆幫手評價</a></td>
-			</tr>
-			<% } %>
-		</table>
-    	<a href="/city/<%= hostel.city %>/hostel">回上頁</a>
+
+	
+				<div id="map"></div>
+
+	<script>
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+  });
+
+   var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading"><%= hostel.name %></h1>'+
+      '<div id="bodyContent">'+
+      	"<% if(hostel.licence){%>"+
+			"縣市旅宿登記證號:<%= hostel.licence %>"+
+    	"<% }else{ %>"+
+			"縣市旅宿登記證號:找不到資料"+
+    	"<% }%>"+
+    	"<br/>"+
+    	"<% if(hostel.website){ %>"+
+			"<a href='<%= hostel.website %>' target='_blank'>官網</a>"+
+			"</p><% } %>"+
+    	"<% if(hostel.polis){ %>"+
+			"<a href='/hostel/<%= hostel.id %>/polis' target='_blank'>歷屆幫手評價</a>"+
+			"</p><% } %>"+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({'address': "<%= hostel.address %>"}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location
+      });
+          		infowindow.open(map, marker);
+
+      marker.addListener('click', function() {
+    		infowindow.open(map, marker);
+  		});
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+
+}
+
+
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfEDd8hvz5TVWFnhwikcQchFl00CSm724&callback=initMap">
+    </script>
 	</body>
 </html>
