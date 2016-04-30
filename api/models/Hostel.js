@@ -15,6 +15,7 @@ module.exports = {
     township:{type:'string',required: true},
     address:{type:'string',required: true},
     phone:{type:'string',required: false},
+    fax:{type:'string',required: false},
     rooms:{type:'integer',required: false,defaultsTo: 0},
     email:{type:'string',required: false},
     website:{type:'string',required: false},

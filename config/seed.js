@@ -1,4 +1,4 @@
 module.exports.seed = {
 	path:'seeds',
-	active:true
+	active:false
 }

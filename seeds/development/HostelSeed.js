@@ -1,15 +1,3 @@
-module.exports = [{
-    licence:'licence',
-    name:'name',
-    type:'type',
-    star:0,
-    city:'city',
-    township:'township',
-    address:'address',
-    phone:'phone',
-    rooms:10,
-    email:'email',
-    website:'website',
-    zip_code:256,
-    enable_date:'2010/10/10',
-}];
+var fs = require('fs');
+var hostels = JSON.parse(fs.readFileSync('assets/hostel.json', 'utf8'));
+module.exports = hostels;
