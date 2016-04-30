@@ -48,6 +48,7 @@ module.exports.routes = {
   '/hostel/create':'HostelController.create',
   'post /hostel': 'HostelController.store',
   '/hostel/:id':'HostelController.show',
+  '/hostel/:id/polis':'HostelController.polis',
   '/city/:city/hostel':'CityController.show',
   '/city':'CityController.index'
 };

@@ -21,6 +21,7 @@ module.exports = {
     website:{type:'string',required: false},
     zip_code:{type:'integer',required: false,defaultsTo: 0},
     enable_date:{type:'date',required: false},
+    polis:{type:'string',required: false},
   }
 };
 

@@ -20,6 +20,12 @@ module.exports = {
   		Hostel.create(hostel).exec(function(err, created){
   			return res.redirect('/city');
   		});
+  	},
+  	polis:function(req, res){
+		var id = req.param('id');
+		Hostel.findOne({id:id}).exec(function(err,hostel){
+			return res.view("hostel/polis",{hostel:hostel});
+		});
   	}
 };
 

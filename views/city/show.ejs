@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Xchanger-hostel</title>
+		<title>Xchanger-hostels</title>
 		<meta name="viewport" content="initial-scale=1.0">
     	<meta charset="utf-8">
     	<!-- Latest compiled and minified CSS -->
@@ -13,31 +13,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<h1><%= hostel.name %></h1>
-		<table class="table">
-			<tr>
-				<td>縣市旅宿登記證號</td>
-				<td><%= hostel.licence %></td>
-			</tr>
-			<tr>
-				<td>房間數量</td>
-				<td><%= hostel.rooms %></td>
-			</tr>
-			<tr>
-				<td>地址</td>
-				<td><%= hostel.address %></td>
-			</tr>
-			<tr>
-				<td>網址</td>
-				<td><a href="<%= hostel.address %>">官網</a></td>
-			</tr>
-			<% if(hostel.polis){ %>
-			<tr>
-				<td>小幫手紀錄</td>
-				<td><a href="/hostel/<%= hostel.id %>/polis" target="_blank">歷屆幫手評價</a></td>
-			</tr>
-			<% } %>
-		</table>
-    	<a href="/city/<%= hostel.city %>/hostel">回上頁</a>
+		<h1><%= city %> 共有<%= hostels.length %>間民宿</h1>
+		<% _.each(hostels, function (hostel) { %>
+			<% if(hostel.licence){%>
+    		<p><a href="/hostel/<%= hostel.id %>"><%= hostel.name %></a></p>
+    		<% }else{ %>
+			<p><a style="color:red;" href="/hostel/<%= hostel.id %>"><%= hostel.name %></a></p>
+    		<% }%>
+    	<% }) %>
+    	<a href="/city">回上頁</a>
 	</body>
 </html>
