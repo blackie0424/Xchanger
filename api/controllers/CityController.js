@@ -12,7 +12,7 @@ module.exports = {
   show: function(req, res){
   		var city = req.param('city');
 	  	Hostel.find({city:city,type:"好客民宿"}).exec(function(err,hostels){
-			return res.view("city/hostels",{hostels:hostels,city:city});
+			return res.view("city/show",{hostels:hostels,city:city});
 		});
   }
 };
