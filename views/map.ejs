@@ -1,26 +1,5 @@
-<html>
-	<head>
-		<title>Xchanger-hostel</title>
-		<meta name="viewport" content="initial-scale=1.0">
-    	<meta charset="utf-8">
-    	<style>
-      		html, body {
-        		height: 100%;
-        		margin: 0;
-        		padding: 0;
-      		}
-      		#map {
-        		height: 100%;
-      		}
-    </style>
-	</head>
-	<body>
-		<h1>
-			Hostel
-		</h1>
-		<div id="map"></div>
-    	<script>
-
+<div id="map"></div>
+<script>
 var map;
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -37,7 +16,7 @@ function initMap() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('Mom, I\'m here.');
+      infoWindow.setContent('<%= message %>');
       map.setCenter(pos);
     }, function() {
       handleLocationError(true, infoWindow, map.getCenter());
@@ -54,9 +33,6 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                         'Error: The Geolocation service failed.' :
                         'Error: Your browser doesn\'t support geolocation.');
 }
-
-    </script>
+</script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfEDd8hvz5TVWFnhwikcQchFl00CSm724&callback=initMap">
         </script>
-	</body>
-</html>

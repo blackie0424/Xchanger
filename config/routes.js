@@ -45,8 +45,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-
-  '/hostel':{
-    view: 'hostel'
-  }
+  '/hostel/:id':'HostelController.show',
+  '/city/:city/hostel':'CityController.show',
+  '/city':'CityController.index'
 };
