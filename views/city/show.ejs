@@ -11,6 +11,11 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<style>
+    body{
+      background-color: #45b1ff;
+    }
+    </style>
 	</head>
 	<body>
 		<h1><%= city %> 共有<%= hostels.length %>間民宿</h1>
@@ -21,8 +26,11 @@
 						<div class="panel panel-default">
   						<div class="panel-heading"><%= hostel.name %></div>
   							<div class="panel-body">
-    							<% if(hostel.licence){%>
-									<img src="/images/Img_307.gif" width="60%" />
+    							<% if(hostel.licence && hostel.type =="民宿"){%>
+									<img src="/images/Img_307.gif" height="100px" />
+    							<% }%>
+    							<% if(hostel.licence && hostel.type =="好客民宿"){%>
+									<img src="/images/taiwan_host.jpg" height="100px" />
     							<% }%>
     							<a href="/hostel/<%= hostel.id %>" class="btn btn-primary">詳細資料</a>
   							</div>
