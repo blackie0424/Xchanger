@@ -32,7 +32,8 @@
     <div id="info">
       所屬縣市:<span id="name"></span><br/>
       民宿數量:<span id="density"></span><br/>
-      詳細資料:<a id="city"></a>
+      詳細資料:<a id="city"></a><br/>
+      民宿搜尋:<input type="text" name="search" id="search"/>
     </div>
   <script>
     d3.json("county.json", function(topodata) {
@@ -69,8 +70,16 @@
             $("#density").text(d.density);
             $("#city").text(d.properties.C_Name);
             $("#city").attr('href','/city/'+d.properties.C_Name+'/hostel' );
-      });;
+      });
     });
+
+	$('#search').change(function(){
+		var name = $(this).val();
+		$.post('/hostel/search',{name:name},function(hostel){
+			window.location = "/hostel/"+hostel.id;
+		})
+	});
+
   </script>
   </body>
 </html>

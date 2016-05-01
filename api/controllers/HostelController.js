@@ -26,6 +26,13 @@ module.exports = {
 		Hostel.findOne({id:id}).exec(function(err,hostel){
 			return res.view("hostel/polis",{hostel:hostel});
 		});
-  	}
+  	},
+    search:function(req, res){
+      var _hostel = req.body;
+
+      Hostel.findOne(_hostel).exec(function(err,hostel){
+          return res.json(hostel);
+      });
+    }
 };
 

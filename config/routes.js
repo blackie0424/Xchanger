@@ -45,6 +45,7 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  'post /hostel/search':'HostelController.search',
   '/hostel/create':'HostelController.create',
   'post /hostel': 'HostelController.store',
   '/hostel/:id':'HostelController.show',
