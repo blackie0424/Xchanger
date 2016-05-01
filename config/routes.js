@@ -50,5 +50,8 @@ module.exports.routes = {
   '/hostel/:id':'HostelController.show',
   '/hostel/:id/polis':'HostelController.polis',
   '/city/:city/hostel':'CityController.show',
-  '/city':'CityController.index'
+  '/city':'CityController.index',
+  '/map':{
+    view: 'map'
+  }
 };
