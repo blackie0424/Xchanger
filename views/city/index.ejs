@@ -76,8 +76,9 @@
 	$('#search').change(function(){
 		var name = $(this).val();
 		$.post('/hostel/search',{name:name},function(hostel){
+			console.log(hostel);
 			window.location = "/hostel/"+hostel.id;
-		})
+		});
 	});
 
   </script>
