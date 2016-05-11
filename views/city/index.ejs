@@ -6,51 +6,31 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.16/d3.min.js"></script>
     <script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-            <link rel="stylesheet" type="text/css" href="/styles/bootstrap/css/bootstrap-theme.min.css">
-
-        <link rel="stylesheet" type="text/css" href="/styles/bootstrap/css/bootstrap.min.css">
+            
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
-    <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      border:none;
-      background-color: #45b1ff;
-    }
-    form{
-      margin-right: 10px;
-      margin-top: 40px;
-    }
-    #name {
-      font-size: 1.2em;
-    }
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-    #unit {
-      font-size: 12px;
-    }
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <style>
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 85vh; }
     </style>
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8">
-              <svg viewBox="0 0 800 600"></svg>
-        </div>
-        <div class="col-md-4">
-            <div class="row">
-              <div class="col-md-12">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <input type="text" class="form-control" id="search" placeholder="民宿名稱" name="search">
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- 所屬縣市:<span id="name"></span><br/>
-            民宿數量:<span id="density"></span><br/>
-            詳細資料:<a id="city"></a><br/> -->
+          <% include ../navbar %>
+      </div>
+      <div class="row">
+        <div class="col-md-12" id="map">
+              <!-- <svg viewBox="0 0 800 600"></svg> -->
         </div>
       </div>
       <div class="row">
@@ -60,6 +40,26 @@
       </div>
     </div>
     
+<script>
+
+var map;
+function initMap() {
+  var myLatLng = {lat: 23.655292290836066, lng: 120.44604003906248};
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    zoom: 8,
+    disableDefaultUI: true
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+    </script>
+
   <script>
     d3.json("county.json", function(topodata) {
       var features = topojson.feature(topodata, topodata.objects["county"]).features;
@@ -107,5 +107,7 @@
 	});
 
   </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfEDd8hvz5TVWFnhwikcQchFl00CSm724&callback=initMap">
+    </script>
   </body>
 </html>
