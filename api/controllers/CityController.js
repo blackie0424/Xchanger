@@ -5,10 +5,10 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 module.exports = {
 	index: function (req, res) {
 		Hostel.find().limit(10).exec(function(err,hostels){
-			console.log(hostels);
 			return res.view("city/index",{hostels:hostels});
 		});
 		
