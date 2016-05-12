@@ -44,7 +44,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
   'post /hostel/search':'HostelController.search',
-  '/hostel/create':'HostelController.create',
   'post /hostel': 'HostelController.store',
   '/hostel/:id':'HostelController.show',
   '/hostel/:id/polis':'HostelController.polis',

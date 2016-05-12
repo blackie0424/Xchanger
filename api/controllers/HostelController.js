@@ -12,13 +12,10 @@ module.exports = {
 			return res.view("hostel/show",{hostel:hostel});
 		});
   	},
-  	create:function (req, res){
-  		res.view('hostel/create');
-  	},
   	store:function (req, res){
   		var hostel = req.body;
-  		Hostel.create(hostel).exec(function(err, created){
-  			return res.redirect('/city');
+  		Hostel.findOrCreate({name:hostel.name},hostel).exec(function(err, created){
+  			return res.json(created);
   		});
   	},
   	polis:function(req, res){

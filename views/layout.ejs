@@ -95,6 +95,19 @@
     <script src="/js/dependencies/sails.io.js"></script>
     <!--SCRIPTS END-->
     <script>
+      $(document).ready(function(){
+        $('#submit').click(function(){
+          var hostel = $('form').serializeArray();
+          var data = {};
+          data.name = hostel[0].value;
+          data.address = hostel[1].value;
+          data.website = hostel[2].value;
+          data.polis = hostel[3].value;
+          io.socket.post('/hostel',data, function(res) {
+            addMarker(map,[res]);
+          });
+        });  
+      });
       io.socket.get('/hostel', function(data) {
         console.log(data);
       });

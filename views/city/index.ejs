@@ -43,6 +43,16 @@ function initMap() {
     zoom: 7,
     disableDefaultUI: true
   });
+
+  addMarker(map,hostels);
+}
+
+function say(text){
+  console.log(text);
+}
+
+function addMarker(map,hostels){
+  console.log('call addMarker...');
   for (var i = 0; i < hostels.length; i++) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode({'address': hostels[i].address}, function(results, status) {
@@ -69,5 +79,5 @@ function initMap() {
 		});
 	});
   </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfEDd8hvz5TVWFnhwikcQchFl00CSm724&callback=initMap">
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4zdPqv2nA6dBUX15BOE-mBQ0RUucM6VQ&callback=initMap">
     </script>
