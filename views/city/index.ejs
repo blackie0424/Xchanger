@@ -51,22 +51,40 @@ function say(text){
   console.log(text);
 }
 
-function addMarker(map,hostels){
-  console.log('call addMarker...');
-  for (var i = 0; i < hostels.length; i++) {
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address': hostels[i].address}, function(results, status) {
-    if (status === google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
+function addWindow(hostel){
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading"></h1>'+
+      '<div id="bodyContent">'+
+      hostel.name
+      '</div>'+
+      '</div>';
+
+  return new google.maps.InfoWindow({
+    content: contentString
   });
-  }
+}
+
+function addMarker(map,hostels){
+  $.each(hostels,function(key,hostel){
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': hostel.address}, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+        marker.addListener('click', function() {
+          var infowindow = addWindow(hostel);
+          infowindow.open(map, marker);
+        });
+      }else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  })
 }
 </script>
 
