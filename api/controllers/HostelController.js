@@ -6,6 +6,13 @@
  */
 
 module.exports = {
+  join:function(req,res){
+    if (!req.isSocket) {
+      console.log('bad Request...');
+      return res.badRequest();
+    }
+    sails.sockets.join(req, 'showHostel');
+  },
 	show: function (req, res) {
 		var id = req.param('id');
 		Hostel.findOne({id:id}).exec(function(err,hostel){
@@ -15,6 +22,7 @@ module.exports = {
   	store:function (req, res){
   		var hostel = req.body;
   		Hostel.findOrCreate({name:hostel.name},hostel).exec(function(err, created){
+        sails.sockets.broadcast('showHostel','hostel', created);
   			return res.json(created);
   		});
   	},

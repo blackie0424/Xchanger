@@ -46,6 +46,7 @@ module.exports.routes = {
   'post /hostel/search':'HostelController.search',
   'post /hostel': 'HostelController.store',
   '/hostel/:id':'HostelController.show',
+  '/socket/join':'HostelController.join',
   '/hostel/:id/polis':'HostelController.polis',
   '/city/:city/hostel':'CityController.show',
   '/city':'CityController.index',
