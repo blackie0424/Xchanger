@@ -53,12 +53,10 @@ function say(text){
 
 function addWindow(hostel){
   var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '</div>'+
-      '<h1 id="firstHeading" class="firstHeading"></h1>'+
-      '<div id="bodyContent">'+
-      hostel.name
-      '</div>'+
+      '<p>民宿:'+hostel.name+'</p>'+
+      '<p>地址:'+hostel.address+'</p>'+
+      '<p><a target="_blank" href="/hostel/'+hostel.id+'/polis">評價</a></p>'+
+      
       '</div>';
 
   return new google.maps.InfoWindow({
