@@ -52,5 +52,6 @@ module.exports.routes = {
   '/city':'CityController.index',
   '/map':{
     view: 'map'
-  }
+  },
+  '/api/hostel':'HostelController.list'
 };

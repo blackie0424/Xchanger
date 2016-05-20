@@ -38,6 +38,11 @@ module.exports = {
       Hostel.findOne(_hostel).exec(function(err,hostel){
           return res.json(hostel);
       });
+    },
+    list:function(req,res){
+      Hostel.find().limit(10).exec(function(err,hostels){
+        res.json(hostels)
+      });
     }
 };
 
