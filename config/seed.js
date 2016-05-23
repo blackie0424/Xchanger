@@ -1,4 +1,4 @@
 module.exports.seed = {
-	path:'seeds',
+	path:'db/seeds',
 	active:true
 }
