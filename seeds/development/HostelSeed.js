@@ -1,3 +1,16 @@
-var fs = require('fs');
-var hostels = JSON.parse(fs.readFileSync('assets/hostel.json', 'utf8'));
-module.exports = hostels;
+module.exports = [{
+		name:"藝宿鶯歌",
+		address:"新北市鶯歌區中湖街152巷15號"
+	},
+	{
+		name:"幸福旅人民宿",
+		address:"花蓮市福建街162-2號"
+	},
+	{
+		name:"依水園中式花園民宿",
+		address:"屏東縣麟洛鄉田中村中正路永安巷6號"
+	},
+	{
+		name:"遇見夏墅",
+		address:"金門縣金城鎮西海路三段106巷12弄1號"
+	}];

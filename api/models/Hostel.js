@@ -8,11 +8,15 @@
 module.exports = {
   attributes: {
     name:{type:'string',required: true},
-    address:{type:'string',required: false},
+    address:{type:'string',required: true},
     phone:{type:'string',required: false},
     email:{type:'string',required: false},
     website:{type:'string',required: false},
     polis:{type:'string',required: false},
-  }
+    created_at:{tpye:'datetime',required: false}
+  },
+  autoCreatedAt:false,
+  autoUpdatedAt:false,
+  autoPK: true
 };
 
