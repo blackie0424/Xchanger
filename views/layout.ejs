@@ -102,7 +102,6 @@
           data.name = hostel[0].value;
           data.address = hostel[1].value;
           data.website = hostel[2].value;
-          data.polis = hostel[3].value;
           io.socket.post('/hostel',data, function(res) {
             addMarker(map,[res]);
           });
